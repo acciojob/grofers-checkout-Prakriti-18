@@ -12,22 +12,21 @@ const getSum = () => {
 
   const table = document.querySelector("table");
 
-  // Avoid duplicate total row
-  let totalRow = document.querySelector(".total-row");
-  if (!totalRow) {
-    totalRow = document.createElement("tr");
-    totalRow.className = "total-row";
+  // Check if #ans already exists
+  let ansCell = document.querySelector("#ans");
 
-    const totalCell = document.createElement("td");
-    totalCell.colSpan = 2;
-    totalCell.className = "total-value";
+  if (!ansCell) {
+    const row = document.createElement("tr");
+    ansCell = document.createElement("td");
 
-    totalRow.appendChild(totalCell);
-    table.appendChild(totalRow);
+    ansCell.id = "ans";
+    ansCell.colSpan = 2;
+
+    row.appendChild(ansCell);
+    table.appendChild(row);
   }
 
-  document.querySelector(".total-value").innerText =
-    "Total Price: Rs " + total;
+  ansCell.innerText = total;
 };
 
 getSumBtn.addEventListener("click", getSum);
